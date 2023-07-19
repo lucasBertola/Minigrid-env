@@ -15,18 +15,32 @@ Welcome to the MiniGrid Environment repository! This is a simple yet powerful en
 
 ## Getting Started
 
-To use the MiniGrid environment, you need to import the `MiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
+To use the MiniGrid environment, you can install it directly into your project using pip:
+
+```bash
+pip install gymnasium-minigrid
+```
+
+Then, you can import the `MiniGridEnv` class:
+
+```python
+from gymnasium_minigrid import MiniGridEnv
+```
+
+For detailed usage instructions and examples, please refer to the [examples](https://github.com/lucasBertola/Minigrid/tree/main/exemples) directory or check out our [Colab Notebook](https://colab.research.google.com/github/lucasBertola/Minigrid/blob/main/exemples/PPO_MlpPolicy.ipynb).
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lucasBertola/Minigrid/blob/main/exemples/PPO_MlpPolicy.ipynb)
 
 ## Examples
 
-We have provided several examples in the `examples` directory to help you get started. These examples demonstrate how to use the environment with different types of policies and neural networks.
+We have provided several examples in the [examples](https://github.com/lucasBertola/Minigrid/tree/main/exemples) directory to help you get started. These examples demonstrate how to use the environment with different types of policies and neural networks.
 
 ## Usage Example
 
 Here is a simple example of how to use the environment with a FCN policy:
 
 ```python
-from src.MiniGridEnv import MiniGridEnv
+from gymnasium_minigrid import MiniGridEnv
 from stable_baselines3 import PPO
 
 env = MiniGridEnv(size=5)
@@ -38,10 +52,11 @@ model.learn(total_timesteps=10000)
 
 We believe in the importance of testing. That's why we have included a suite of tests in the `test` directory. To run the tests, simply use the command `pytest`.
 
-
 ## Contribute & Support
 
-Feel free to fork this repository and contribute. We appreciate any feedback and support. If you find this repository useful, please give it a star!
+We warmly welcome contributions from the community. If you have an idea for an improvement or found a bug, don't hesitate to open an issue or submit a pull request. Your input is greatly appreciated, and our project is made better by your participation!
+
+If you find this repository useful, please give it a star!
 
 ## License
 
