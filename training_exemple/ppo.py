@@ -8,7 +8,7 @@ import gymnasium as gym
 SIZE = 17
 
 # Créez l'environnement
-env = EasyMiniGridEnv(size=SIZE)
+env = EasyMiniGridEnv(size=SIZE,output_is_picture=False)
 # env = gym.make("LunarLander-v2")
 # Créez le modèle PPO
 model = PPO("MlpPolicy", env, verbose=1)
@@ -16,7 +16,7 @@ model = PPO("MlpPolicy", env, verbose=1)
 # Entraînez le modèle
 model.learn(total_timesteps=10000)
 
-env = EasyMiniGridEnv(render_mode="human",size=SIZE) 
+env = EasyMiniGridEnv(render_mode="human",size=SIZE,output_is_picture=False) 
 
 # env = gym.make("LunarLander-v2", render_mode="human")
 # Testez le modèle

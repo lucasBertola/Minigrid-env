@@ -1,6 +1,6 @@
 import sys 
 sys.path.append('../')
-from src.EasyMiniGridEnv2 import EasyMiniGridEnv2
+from src.EasyMiniGridEnv import EasyMiniGridEnv
 from stable_baselines3 import PPO
 import time
 import gymnasium as gym
@@ -10,7 +10,7 @@ from cnn_network import policy_kwargs
 
 
 def test_is_determinist_with_ppo():
-    env = EasyMiniGridEnv2(size=5)
+    env = EasyMiniGridEnv(size=5,output_is_picture=True)
     model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=0, seed=0)
     model.learn(total_timesteps=2000)
 
@@ -26,7 +26,7 @@ def test_is_determinist_with_ppo():
     assert np.sum(steps) ==2717 , "The model is not detrminist, sum : "+str(np.sum(steps))
 
 def test_is_working_with_ppo():
-    env = EasyMiniGridEnv2(size=5)
+    env = EasyMiniGridEnv(size=5,output_is_picture=True)
     model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=0, seed=2)
     model.learn(total_timesteps=20000)
     obs , _=  env.reset(seed=2)

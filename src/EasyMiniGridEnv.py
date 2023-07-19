@@ -7,13 +7,16 @@ import numpy as np
 class EasyMiniGridEnv(gymnasium.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 12}
 
-    def __init__(self, render_mode=None, size=5):
+    def __init__(self, render_mode=None, size=5, output_is_picture=False):
         self.size = size  # Define the size of the square grid
         self.window_size = 512  # Define the size of the PyGame window
-
-        # Define the observation space. Each location is encoded as an element of {0, ..., `size`}^2, i.e. MultiDiscrete([size, size]).
-        # The observation space includes PositionX, PositionY, TargetX, TargetY
-        self.observation_space = spaces.Box(0, size - 1, shape=(4,), dtype=int)
+        self.output_is_picture = output_is_picture
+   
+        if self.output_is_picture:
+            self.observation_space = spaces.Box(low=0, high=2, shape=(1,self.size, self.size), dtype=np.int32)
+        else:
+            # The observation space includes PositionX, PositionY, TargetX, TargetY
+            self.observation_space = spaces.Box(0, size - 1, shape=(4,), dtype=int)
         
         # Define the action space. We have 4 actions, corresponding to "right", "up", "left", "down"
         self.action_space = spaces.Discrete(4)
@@ -33,8 +36,13 @@ class EasyMiniGridEnv(gymnasium.Env):
         self.clock = None
 
     def _get_obs(self):
-        # Return the current observation
-        return np.array([self._PositionX, self._PositionY, self._TargetX, self._TargetY]).reshape(-1)
+        if self.output_is_picture:
+            grid = np.zeros((1, self.size, self.size))
+            grid[0, self._PositionX, self._PositionY] = 1
+            grid[0, self._TargetX, self._TargetY] = 2 
+            return grid
+        else:
+            return np.array([self._PositionX, self._PositionY, self._TargetX, self._TargetY]).reshape(-1)
 
     def _get_distance(self):
         # Calculate the Euclidean distance between the current position and the target

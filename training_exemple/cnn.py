@@ -2,7 +2,7 @@ from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3 import PPO
 import sys
 sys.path.append('../')
-from src.EasyMiniGridEnv2 import EasyMiniGridEnv2
+from src.EasyMiniGridEnv import EasyMiniGridEnv
 import torch as th
 import torch.nn as nn
 from gymnasium import spaces
@@ -55,13 +55,13 @@ policy_kwargs = dict(
     features_extractor_class=CustomCNN,
     features_extractor_kwargs=dict(features_dim=FEATURE_DIM),
 )
-env = EasyMiniGridEnv2(size=SIZE)
+env = EasyMiniGridEnv(size=SIZE,output_is_picture=True)
 # env = gym.make('BreakoutNoFrameskip-v4')
 model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=1)
 model.learn(total_timesteps=20000)
 
 print('training finish')
-env = EasyMiniGridEnv2(render_mode="human", size=SIZE)
+env = EasyMiniGridEnv(render_mode="human", size=SIZE,output_is_picture=True)
 # env = gym.make('BreakoutNoFrameskip-v4', render_mode="human")
 # # env = gym.make("LunarLander-v2", render_mode="human")
 # # Testez le modèle

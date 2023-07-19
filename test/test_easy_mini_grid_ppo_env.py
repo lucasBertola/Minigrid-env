@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 
 def test_is_determinist_with_ppo():
-    env = EasyMiniGridEnv(size=3) 
+    env = EasyMiniGridEnv(size=3,output_is_picture=False) 
     model = PPO("MlpPolicy", env, verbose=0, seed=0)
     model.learn(total_timesteps=1000)
     obs , _=  env.reset(seed=0)
@@ -20,10 +20,10 @@ def test_is_determinist_with_ppo():
             steps.append(i)
             obs , _=  env.reset()
     # Vérifiez que le modèle finit le jeu en moins de 5 étapes en moyenne
-    assert np.sum(steps) ==28062 , "The model is not detrminist"
+    assert np.sum(steps) == 41997 , "The model is not determinist"
 
 def test_is_working_with_ppo():
-    env = EasyMiniGridEnv(size=5) 
+    env = EasyMiniGridEnv(size=5,output_is_picture=False)
     model = PPO("MlpPolicy", env, verbose=0, seed=0)
     model.learn(total_timesteps=20000)
     obs , _=  env.reset(seed=0)

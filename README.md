@@ -1,6 +1,7 @@
 <p align="center">
     <img src="https://github.com/lucasBertola/Minigrid/blob/main/showProject.gif" width="500px"/>
 </p>
+
 # MiniGrid: A Simple Gridworld Environment for Reinforcement Learning
 
 Welcome to MiniGrid, a simple and intuitive gridworld environment designed for reinforcement learning experiments. This environment is built using the Gymnasium framework and is perfect for beginners who are just starting out in reinforcement learning or for experts who want to test their algorithms in a controlled setting.
