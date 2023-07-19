@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/lucasBertola/Minigrid/blob/main/showProject.gif" />
+    <img src="https://raw.githubusercontent.com/Farama-Foundation/Minigrid/master/minigrid-text.png" width="500px"/>
 </p>
 # MiniGrid: A Simple Gridworld Environment for Reinforcement Learning
 
