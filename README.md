@@ -1,6 +1,6 @@
-# EasyMiniGridEnv2: A Simple Gridworld Environment for Reinforcement Learning
+# MiniGrid: A Simple Gridworld Environment for Reinforcement Learning
 
-Welcome to EasyMiniGridEnv2, a simple and intuitive gridworld environment designed for reinforcement learning experiments. This environment is built using the Gymnasium framework and is perfect for beginners who are just starting out in reinforcement learning or for experts who want to test their algorithms in a controlled setting.
+Welcome to MiniGrid, a simple and intuitive gridworld environment designed for reinforcement learning experiments. This environment is built using the Gymnasium framework and is perfect for beginners who are just starting out in reinforcement learning or for experts who want to test their algorithms in a controlled setting.
 
 ## Features
 
@@ -12,7 +12,7 @@ Welcome to EasyMiniGridEnv2, a simple and intuitive gridworld environment design
 
 ## Installation
 
-To install EasyMiniGridEnv2, you need to have Python 3.6 or later. You can install it using pip:
+To install MiniGrid, you need to have Python 3.6 or later. You can install it using pip:
 
 ```bash
 pip install gymnasium
@@ -22,8 +22,8 @@ pip install pygame
 Then, clone this repository and navigate into it:
 
 ```bash
-git clone https://github.com/yourusername/EasyMiniGridEnv2.git
-cd EasyMiniGridEnv2
+git clone https://github.com/yourusername/MiniGrid.git
+cd MiniGrid
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Here is a basic example of how to use the environment:
 import gym
 
 # Create the environment
-env = gym.make('EasyMiniGridEnv2-v0')
+env = gym.make('MiniGrid-v0')
 
 # Reset the environment
 obs = env.reset()
@@ -49,11 +49,11 @@ env.render()
 
 ## Contributing
 
-We welcome contributions to EasyMiniGridEnv2! If you have a feature request, bug report, or want to improve the code, please open an issue or a pull request.
+We welcome contributions to MiniGrid! If you have a feature request, bug report, or want to improve the code, please open an issue or a pull request.
 
 ## License
 
-EasyMiniGridEnv2 is released under the MIT license. For more details, see the [LICENSE](LICENSE) file.
+MiniGrid is released under the MIT license. For more details, see the [LICENSE](LICENSE) file.
 
 ## Contact
 
