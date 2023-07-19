@@ -15,7 +15,7 @@ Welcome to the EasyMiniGrid Environment repository! This is a simple yet powerfu
 
 ## Getting Started
 
-To use the EasyMiniGrid environment, you need to import the `EasyMiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
+To use the EasyMiniGrid environment, you need to import the `MiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
 
 ## Examples
 
@@ -30,10 +30,10 @@ We believe in the importance of testing. That's why we have included a suite of 
 Here is a simple example of how to use the environment with a FCN policy:
 
 ```python
-from src.EasyMiniGridEnv import EasyMiniGridEnv
+from src.MiniGridEnv import MiniGridEnv
 from stable_baselines3 import PPO
 
-env = EasyMiniGridEnv(size=5)
+env = MiniGridEnv(size=5)
 model = PPO("MlpPolicy", env, verbose=1)
 model.learn(total_timesteps=10000)
 ```
