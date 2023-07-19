@@ -128,25 +128,42 @@ class EasyMiniGridEnv2(gymnasium.Env):
             self.clock = pygame.time.Clock()
 
         canvas = pygame.Surface((self.window_size, self.window_size))
-        canvas.fill((255, 255, 255))
+        canvas.fill((128, 128, 128))  # Set background to grey
+
+        # Define the size of the padding
+        padding = self.window_size * 0.05
+
+        # Define the size of the grid (excluding padding)
+        grid_size = self.window_size - 2 * padding
+
         pix_square_size = (
-            self.window_size / self.size
+            grid_size / self.size
         )  # The size of a single grid square in pixels
+
+        # Draw the grid background
+        pygame.draw.rect(
+            canvas,
+            (0, 0, 0),  # Set grid background to black
+            pygame.Rect(
+                padding, padding, grid_size, grid_size
+            ),
+        )
 
         # Draw the target
         pygame.draw.rect(
             canvas,
-            (255, 0, 0),
+            (0, 255, 0),  # Set target to green
             pygame.Rect(
-                pix_square_size * self._target_location,
-                (pix_square_size, pix_square_size),
+                padding + pix_square_size * self._target_location[0],
+                padding + pix_square_size * self._target_location[1],
+                pix_square_size, pix_square_size,
             ),
         )
         # Draw the agent
         pygame.draw.circle(
             canvas,
-            (0, 0, 255),
-            (self._agent_location + 0.5) * pix_square_size,
+            (255, 0, 0),
+            (padding + (self._agent_location + 0.5) * pix_square_size),
             pix_square_size / 3,
         )
 
@@ -154,17 +171,17 @@ class EasyMiniGridEnv2(gymnasium.Env):
         for x in range(self.size + 1):
             pygame.draw.line(
                 canvas,
-                0,
-                (0, pix_square_size * x),
-                (self.window_size, pix_square_size * x),
-                width=3,
+                (20, 20, 20),  # Set gridlines to black
+                (padding, padding + pix_square_size * x),
+                (self.window_size - padding, padding + pix_square_size * x),
+                width=1,  # Set gridlines to be very thin
             )
             pygame.draw.line(
                 canvas,
-                0,
-                (pix_square_size * x, 0),
-                (pix_square_size * x, self.window_size),
-                width=3,
+                (20, 20, 20),  # Set gridlines to black
+                (padding + pix_square_size * x, padding),
+                (padding + pix_square_size * x, self.window_size - padding),
+                width=1,  # Set gridlines to be very thin
             )
 
         if self.render_mode == "human":
