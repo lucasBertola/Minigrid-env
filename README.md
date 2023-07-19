@@ -11,7 +11,7 @@ Welcome to the MiniGrid Environment repository! This is a simple yet powerful en
 - **Customizable Grid Size**: You can easily adjust the size of the grid to challenge your agent with different levels of complexity.
 - **FCN and CNN Compatible**: The environment is designed to work seamlessly with both FCN and CNN policies. This makes it a great playground to experiment with different types of neural networks.
 - **Human Render Mode**: Watch your agent learn in real-time with the human render mode. It's not just about the numbers, it's also about the journey!
-- **OpenAI Gym Compatible**: MiniGrid follows the OpenAI Gym interface, making it compatible with a wide range of reinforcement learning libraries and algorithms.
+- **OpenAI Gym / Gymnasium Compatible**: MiniGrid follows the OpenAI Gym / Gymnasium interface, making it compatible with a wide range of reinforcement learning libraries and algorithms.
 
 ## Getting Started
 
