@@ -21,10 +21,6 @@ To use the EasyMiniGrid environment, you need to import the `MiniGridEnv` class 
 
 We have provided several examples in the `examples` directory to help you get started. These examples demonstrate how to use the environment with different types of policies and neural networks.
 
-## Testing
-
-We believe in the importance of testing. That's why we have included a suite of tests in the `test` directory. To run the tests, simply use the command `pytest`.
-
 ## Usage Example
 
 Here is a simple example of how to use the environment with a FCN policy:
@@ -37,6 +33,11 @@ env = MiniGridEnv(size=5)
 model = PPO("MlpPolicy", env, verbose=1)
 model.learn(total_timesteps=10000)
 ```
+
+## Testing
+
+We believe in the importance of testing. That's why we have included a suite of tests in the `test` directory. To run the tests, simply use the command `pytest`.
+
 
 ## Contribute & Support
 
