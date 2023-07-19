@@ -2,20 +2,20 @@
     <img src="https://github.com/lucasBertola/Minigrid/blob/main/showProject.gif" width="500px"/>
 </p>
 
-# EasyMiniGrid Environment
+# MiniGrid Environment
 
-Welcome to the EasyMiniGrid Environment repository! This is a simple yet powerful environment designed for reinforcement learning agents. The goal of the game is to navigate a grid and reach a target location. The environment is highly customizable and can be used with both Fully Connected Networks (FCN) and Convolutional Neural Networks (CNN).
+Welcome to the MiniGrid Environment repository! This is a simple yet powerful environment designed for reinforcement learning agents. The goal of the game is to navigate a grid and reach a target location. The environment is highly customizable and can be used with both Fully Connected Networks (FCN) and Convolutional Neural Networks (CNN).
 
 ## Features
 
 - **Customizable Grid Size**: You can easily adjust the size of the grid to challenge your agent with different levels of complexity.
 - **FCN and CNN Compatible**: The environment is designed to work seamlessly with both FCN and CNN policies. This makes it a great playground to experiment with different types of neural networks.
 - **Human Render Mode**: Watch your agent learn in real-time with the human render mode. It's not just about the numbers, it's also about the journey!
-- **OpenAI Gym Compatible**: EasyMiniGrid follows the OpenAI Gym interface, making it compatible with a wide range of reinforcement learning libraries and algorithms.
+- **OpenAI Gym Compatible**: MiniGrid follows the OpenAI Gym interface, making it compatible with a wide range of reinforcement learning libraries and algorithms.
 
 ## Getting Started
 
-To use the EasyMiniGrid environment, you need to import the `MiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
+To use the MiniGrid environment, you need to import the `MiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
 
 ## Examples
 
