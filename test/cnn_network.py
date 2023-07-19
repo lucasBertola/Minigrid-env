@@ -1,17 +1,10 @@
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
-from stable_baselines3 import PPO
-import sys
-sys.path.append('../')
-from src.EasyMiniGridEnv2 import EasyMiniGridEnv2
 import torch as th
 import torch.nn as nn
 from gymnasium import spaces
-import gymnasium as gym
 
-
-SIZE = 17
 NUMBER_OUT_CHANNEL = 28
-KERNEL_SIZE = 5
+KERNEL_SIZE = 3
 FEATURE_DIM = 296
 
 
@@ -55,20 +48,3 @@ policy_kwargs = dict(
     features_extractor_class=CustomCNN,
     features_extractor_kwargs=dict(features_dim=FEATURE_DIM),
 )
-env = EasyMiniGridEnv2(size=SIZE)
-# env = gym.make('BreakoutNoFrameskip-v4')
-model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=1)
-model.learn(total_timesteps=20000)
-
-print('training finish')
-env = EasyMiniGridEnv2(render_mode="human", size=SIZE)
-# env = gym.make('BreakoutNoFrameskip-v4', render_mode="human")
-# # env = gym.make("LunarLander-v2", render_mode="human")
-# # Testez le modèle
-obs, _ = env.reset()
-for i in range(2000):
-    action, _states = model.predict(obs)
-    obs, rewards, dones, truncated, info = env.step(action)
-    env.render()
-    if (truncated or dones):
-        obs, _ = env.reset()
