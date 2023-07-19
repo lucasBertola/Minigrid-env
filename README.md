@@ -2,65 +2,46 @@
     <img src="https://github.com/lucasBertola/Minigrid/blob/main/showProject.gif" width="500px"/>
 </p>
 
-# MiniGrid: A Simple Gridworld Environment for Reinforcement Learning
+# EasyMiniGrid Environment
 
-Welcome to MiniGrid, a simple and intuitive gridworld environment designed for reinforcement learning experiments. This environment is built using the Gymnasium framework and is perfect for beginners who are just starting out in reinforcement learning or for experts who want to test their algorithms in a controlled setting.
+Welcome to the EasyMiniGrid Environment repository! This is a simple yet powerful environment designed for reinforcement learning agents. The goal of the game is to navigate a grid and reach a target location. The environment is highly customizable and can be used with both Fully Connected Networks (FCN) and Convolutional Neural Networks (CNN).
 
 ## Features
 
-- **Customizable Grid Size**: You can easily adjust the size of the square grid according to your needs.
-- **Four Action Space**: The agent can move in four directions - right, up, left, and down.
-- **Distance-based Reward System**: The agent is rewarded based on its distance from the target. The closer it is to the target, the higher the reward.
-- **Pygame Rendering**: The environment uses Pygame for rendering, providing a visual representation of the agent's movements and interactions with the environment.
-- **Randomized Initial Positions**: The initial positions of the agent and the target are randomized in each episode, ensuring a diverse range of scenarios for the agent to learn from.
+- **Customizable Grid Size**: You can easily adjust the size of the grid to challenge your agent with different levels of complexity.
+- **FCN and CNN Compatible**: The environment is designed to work seamlessly with both FCN and CNN policies. This makes it a great playground to experiment with different types of neural networks.
+- **Human Render Mode**: Watch your agent learn in real-time with the human render mode. It's not just about the numbers, it's also about the journey!
+- **OpenAI Gym Compatible**: EasyMiniGrid follows the OpenAI Gym interface, making it compatible with a wide range of reinforcement learning libraries and algorithms.
 
-## Installation
+## Getting Started
 
-To install MiniGrid, you need to have Python 3.6 or later. You can install it using pip:
+To use the EasyMiniGrid environment, you need to import the `EasyMiniGridEnv` class from the `src` directory. This class provides all the functionality you need to interact with the environment. For detailed usage instructions, please refer to the documentation in the `src` directory.
 
-```bash
-pip install gymnasium
-pip install pygame
-```
+## Examples
 
-Then, clone this repository and navigate into it:
+We have provided several examples in the `examples` directory to help you get started. These examples demonstrate how to use the environment with different types of policies and neural networks.
 
-```bash
-git clone https://github.com/yourusername/MiniGrid.git
-cd MiniGrid
-```
+## Testing
 
-## Usage
+We believe in the importance of testing. That's why we have included a suite of tests in the `test` directory. To run the tests, simply use the command `pytest`.
 
-Here is a basic example of how to use the environment:
+## Usage Example
+
+Here is a simple example of how to use the environment with a FCN policy:
 
 ```python
-import gym
+from src.EasyMiniGridEnv import EasyMiniGridEnv
+from stable_baselines3 import PPO
 
-# Create the environment
-env = gym.make('MiniGrid-v0')
-
-# Reset the environment
-obs = env.reset()
-
-# Take a step
-action = env.action_space.sample()
-obs, reward, done, info = env.step(action)
-
-# Render the environment
-env.render()
+env = EasyMiniGridEnv(size=5)
+model = PPO("MlpPolicy", env, verbose=1)
+model.learn(total_timesteps=10000)
 ```
 
-## Contributing
+## Contribute & Support
 
-We welcome contributions to MiniGrid! If you have a feature request, bug report, or want to improve the code, please open an issue or a pull request.
+Feel free to fork this repository and contribute. We appreciate any feedback and support. If you find this repository useful, please give it a star!
 
 ## License
 
-MiniGrid is released under the MIT license. For more details, see the [LICENSE](LICENSE) file.
-
-## Contact
-
-If you have any questions or feedback, feel free to reach out to us!
-
-Happy Reinforcement Learning!
+This project is licensed under the MIT License. See the `LICENSE` file for details.

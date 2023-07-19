@@ -1,6 +1,6 @@
 import sys 
 sys.path.append('../')
-from src.EasyMiniGridEnv import EasyMiniGridEnv
+from src.MiniGridEnv import MiniGridEnv
 from stable_baselines3 import PPO
 import time
 import gymnasium as gym
@@ -8,7 +8,7 @@ import gymnasium as gym
 SIZE = 17
 
 # Créez l'environnement
-env = EasyMiniGridEnv(size=SIZE,output_is_picture=False)
+env = MiniGridEnv(size=SIZE,output_is_picture=False)
 # env = gym.make("LunarLander-v2")
 # Créez le modèle PPO
 model = PPO("MlpPolicy", env, verbose=1)
@@ -16,7 +16,7 @@ model = PPO("MlpPolicy", env, verbose=1)
 # Entraînez le modèle
 model.learn(total_timesteps=10000)
 
-env = EasyMiniGridEnv(render_mode="human",size=SIZE,output_is_picture=False) 
+env = MiniGridEnv(render_mode="human",size=SIZE,output_is_picture=False) 
 
 # env = gym.make("LunarLander-v2", render_mode="human")
 # Testez le modèle

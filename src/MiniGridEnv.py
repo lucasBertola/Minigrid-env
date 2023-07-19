@@ -4,7 +4,7 @@ import pygame
 import math
 import numpy as np
 
-class EasyMiniGridEnv(gymnasium.Env):
+class MiniGridEnv(gymnasium.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 12}
 
     def __init__(self, render_mode=None, size=5, output_is_picture=False):
