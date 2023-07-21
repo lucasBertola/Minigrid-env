@@ -2,14 +2,14 @@ from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3 import PPO
 import sys
 sys.path.append('../')
-from src.MiniGridEnv import MiniGridEnv
+from gymnasium_minigrid.MiniGridEnv import MiniGridEnv
 import torch as th
 import torch.nn as nn
 from gymnasium import spaces
 import gymnasium as gym
 
 
-SIZE = 17
+SIZE = 6
 NUMBER_OUT_CHANNEL = 28
 KERNEL_SIZE = 5
 FEATURE_DIM = 296
@@ -27,7 +27,6 @@ class CustomCNN(BaseFeaturesExtractor):
         # We assume CxHxW images (channels first)
         # Re-ordering will be done by pre-preprocessing or wrapper
         n_input_channels = observation_space.shape[0]
-        print(KERNEL_SIZE//2)
         self.cnn = nn.Sequential(
             nn.Conv2d(n_input_channels, NUMBER_OUT_CHANNEL,
                       kernel_size=KERNEL_SIZE, stride=1, padding=0),
@@ -56,14 +55,11 @@ policy_kwargs = dict(
     features_extractor_kwargs=dict(features_dim=FEATURE_DIM),
 )
 env = MiniGridEnv(size=SIZE,output_is_picture=True)
-# env = gym.make('BreakoutNoFrameskip-v4')
 model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=1)
 model.learn(total_timesteps=20000)
 
 print('training finish')
 env = MiniGridEnv(render_mode="human", size=SIZE,output_is_picture=True)
-# env = gym.make('BreakoutNoFrameskip-v4', render_mode="human")
-# # env = gym.make("LunarLander-v2", render_mode="human")
 # # Testez le modèle
 obs, _ = env.reset()
 for i in range(2000):

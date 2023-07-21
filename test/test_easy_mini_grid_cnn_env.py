@@ -1,6 +1,6 @@
 import sys 
 sys.path.append('../')
-from src.MiniGridEnv import MiniGridEnv
+from gymnasium_minigrid.MiniGridEnv import MiniGridEnv
 from stable_baselines3 import PPO
 import time
 import gymnasium as gym

@@ -1,6 +1,6 @@
 import sys 
 sys.path.append('../')
-from src.MiniGridEnv import MiniGridEnv
+from gymnasium_minigrid.MiniGridEnv import MiniGridEnv
 from stable_baselines3 import PPO
 import time
 import gymnasium as gym
@@ -18,7 +18,6 @@ model.learn(total_timesteps=10000)
 
 env = MiniGridEnv(render_mode="human",size=SIZE,output_is_picture=False) 
 
-# env = gym.make("LunarLander-v2", render_mode="human")
 # Testez le modèle
 obs , _=  env.reset()
 for i in range(1000):
