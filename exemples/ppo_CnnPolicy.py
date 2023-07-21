@@ -1,4 +1,5 @@
 import sys
+sys.path.append('../')
 import torch as th
 import torch.nn as nn
 from gymnasium import spaces
@@ -6,7 +7,6 @@ from gymnasium_minigrid.MiniGridEnv import MiniGridEnv
 from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
 from stable_baselines3 import PPO
 
-sys.path.append('../')
 
 # Constants
 SIZE = 6
