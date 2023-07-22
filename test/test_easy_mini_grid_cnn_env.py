@@ -60,6 +60,30 @@ def test_is_working_with_ppo():
     # Check if the model finishes the game in less than 20 steps on average
     assert np.mean(step_to_reach_target) <= 20, f"The model has not learned to play the game. Score: {np.mean(step_to_reach_target)}"
 
+def test_is_working_with_default_PPOCNN():
+    """
+    Test if the model is working with PPO.
+    """
+    # Initialize the environment and the model
+    env = MiniGridEnv(size=50, output_is_picture=True)
+    model = PPO("CnnPolicy", env, verbose=0)
+
+    # Train the model
+    model.learn(total_timesteps=1000)
+
+    # Test the model
+    obs, _ = env.reset(seed=2)
+    step_to_reach_target = []
+    step_number = 0
+    for i in range(3):
+        step_number += 1
+        action, _states = model.predict(obs)
+        obs, rewards, dones, truncated, info = env.step(action)
+        if truncated or dones:
+            step_to_reach_target.append(step_number)
+            step_number = 0
+            obs, _ = env.reset()
+
 
 if __name__ == "__main__":
     pytest.main()
