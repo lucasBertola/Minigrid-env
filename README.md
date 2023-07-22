@@ -67,6 +67,21 @@ The episode terminates when the agent reaches the target.
 
 We believe in the importance of testing. That's why we have included a suite of tests in the `test` directory. To run the tests, simply use the command `pytest`.
 
+## Reinforcement Learning Algorithm Benchmark
+
+We have conducted a simple benchmark to compare the performance of different reinforcement learning algorithms on the MiniGrid environment. The following algorithms were tested:
+
+- A2C
+- DQN
+- PPO
+
+The benchmark was run with the default hyperparameters for each algorithm and was executed only once. The performance of each algorithm was evaluated every second for a total of 30 seconds. The graph below shows the evaluation score (y-axis) as a function of the total training time (x-axis).
+
+![algorithm_comparison](https://github.com/lucasBertola/Minigrid/blob/main/benchmark/algorithm_comparison_grid_10.png)
+
+Please note that this benchmark is not exhaustive and should be taken as an indicative comparison of the algorithms' performance. For a more rigorous evaluation, multiple runs with different random seeds and hyperparameter tuning should be performed. However, this graph provides a good representation of our experience with these algorithms on the MiniGrid environment.
+
+
 ## Contribute & Support
 
 We warmly welcome contributions from the community. If you have an idea for an improvement or found a bug, don't hesitate to open an issue or submit a pull request. Your input is greatly appreciated, and our project is made better by your participation!
