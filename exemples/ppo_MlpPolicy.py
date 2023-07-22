@@ -5,14 +5,14 @@ from gymnasium_minigrid.MiniGridEnv import MiniGridEnv
 from stable_baselines3 import PPO
 
 # Set the grid size
-SIZE = 17
+SIZE = 36
 
 # Create the MiniGrid environment
-def create_environment(size, output_is_picture=False, render_mode=None):
-    return MiniGridEnv(size=size, output_is_picture=output_is_picture, render_mode=render_mode)
+def create_environment(size, render_mode=None):
+    return MiniGridEnv(size=size, render_mode=render_mode)
 
 # Create and train the PPO model
-def train_model(env, timesteps=10000):
+def train_model(env, timesteps=100000):
     model = PPO("MlpPolicy", env, verbose=1)
     model.learn(total_timesteps=timesteps)
     return model
@@ -21,7 +21,7 @@ def train_model(env, timesteps=10000):
 def test_model(model, env, steps=1000):
     obs, _ = env.reset()
     for i in range(steps):
-        action, _states = model.predict(obs)
+        action, _states = model.predict(obs,deterministic=True)
         obs, rewards, dones, truncated, info = env.step(action)
         env.render()
         if truncated or dones:

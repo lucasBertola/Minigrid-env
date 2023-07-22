@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gymnasium_minigrid',
-    version='0.0.4',
+    version='0.0.5',
     description='A mini grid environment for OpenAI Gym and Gymnasium',
     author='Lucas Bertola',
     url='https://github.com/lucasBertola/Minigrid',  
@@ -14,3 +14,6 @@ setup(
         'gymnasium==0.28.1',
     ]
 )
+
+#python setup.py sdist bdist_wheel
+#twine upload dist/*

@@ -13,7 +13,7 @@ def test_is_determinist_with_ppo():
     Test if the model is deterministic with PPO.
     """
     # Initialize the environment and the model
-    env = MiniGridEnv(size=5, output_is_picture=True)
+    env = MiniGridEnv(size=5, output_is_picture=True,pixel_max_value=2)
     model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=0, seed=0)
 
     # Train the model
@@ -38,7 +38,7 @@ def test_is_working_with_ppo():
     Test if the model is working with PPO.
     """
     # Initialize the environment and the model
-    env = MiniGridEnv(size=5, output_is_picture=True)
+    env = MiniGridEnv(size=5, output_is_picture=True,pixel_max_value=2)
     model = PPO("CnnPolicy", env, policy_kwargs=policy_kwargs, verbose=0, seed=2)
 
     # Train the model

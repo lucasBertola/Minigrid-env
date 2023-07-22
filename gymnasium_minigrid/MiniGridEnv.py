@@ -8,7 +8,7 @@ import numpy as np
 class MiniGridEnv(gymnasium.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 12}
 
-    def __init__(self, render_mode=None, size=5, output_is_picture=False):
+    def __init__(self, render_mode=None, size=5, output_is_picture=False, max_step=None, pixel_max_value=255):
         """
         Initialize the MiniGrid environment.
 
@@ -19,15 +19,21 @@ class MiniGridEnv(gymnasium.Env):
         self.size = size
         self.window_size = 512
         self.output_is_picture = output_is_picture
+        self.max_step = max_step
+        self.pixel_max_value = pixel_max_value
 
-        if self.output_is_picture:
-            self.observation_space = spaces.Box(low=0, high=2, shape=(1, self.size, self.size), dtype=np.int32)
+        if self.output_is_picture and pixel_max_value == 255:
+            self.observation_space = spaces.Box(low=0, high=255, shape=(self.size, self.size, 1), dtype=np.uint8)
+        elif self.output_is_picture:
+            print('pixel_max_value',pixel_max_value)
+            self.observation_space = spaces.Box(low=0, high=pixel_max_value, shape=(1,self.size, self.size), dtype=np.uint8)
         else:
             self.observation_space = spaces.Box(0, size - 1, shape=(4,), dtype=int)
 
         self.action_space = spaces.Discrete(4)
-
+        
         assert render_mode is None or render_mode in self.metadata["render_modes"]
+        assert pixel_max_value >=2 and pixel_max_value <= 255
         self.render_mode = render_mode
 
         self.window = None
@@ -39,10 +45,15 @@ class MiniGridEnv(gymnasium.Env):
 
         :return: The current observation.
         """
-        if self.output_is_picture:
-            grid = np.zeros((1, self.size, self.size))
-            grid[0, self._PositionX, self._PositionY] = 1
-            grid[0, self._TargetX, self._TargetY] = 2
+        if self.output_is_picture and self.pixel_max_value == 255:
+            grid = np.zeros((self.size, self.size, 1), dtype=np.uint8)
+            grid[self._PositionX, self._PositionY, 0] = 125  # Agent position with gray color
+            grid[self._TargetX, self._TargetY, 0] = 255  # Target position with white color
+            return grid
+        elif self.output_is_picture:
+            grid = np.zeros((1,self.size, self.size), dtype=np.uint8)
+            grid[0,self._PositionX, self._PositionY] = self.pixel_max_value//2  # Agent position with gray color
+            grid[0,self._TargetX, self._TargetY] = self.pixel_max_value  # Target position with white color
             return grid
         else:
             return np.array([self._PositionX, self._PositionY, self._TargetX, self._TargetY]).reshape(-1)
@@ -99,6 +110,7 @@ class MiniGridEnv(gymnasium.Env):
 
         observation = self._get_obs()
         info = self._get_info()
+        self.total_steps = 0
 
         if self.render_mode == "human":
             self._render_frame()
@@ -135,7 +147,13 @@ class MiniGridEnv(gymnasium.Env):
         if self.render_mode == "human":
             self._render_frame()
 
-        return observation, reward, terminated, False, info
+        truncated = False
+
+        self.total_steps += 1
+        if(self.max_step != None and self.total_steps >= self.max_step):
+            truncated = True
+    
+        return observation, reward, terminated, truncated, info
 
     def render(self):
         """
